@@ -30,26 +30,57 @@
             <h2>Say hello</h2>
             <p>Lorem Ipsum is simply dummy text of the printing .</p>
 
-            <form>
+            <form id="contactForm">
                 <div class="inline">
+
                     <div>
                         <label> First name</label>
-                        <input type="text">
+                        <input type="text" id="firstName" placeholder="First name" required>
                     </div>
                     <div>
                         <label>Last name</label>
-                        <input type="text">
+                        <input type="text" id="lastName" placeholder="Last name" required>
                     </div>
                 </div>
+
                 <label>Email Address</label>
-                <input type="email" class="one-line">
+                  <input type="email" id="email" placeholder="Email Address" required>
 
                 <label>Message</label>
-                <textarea class="one-line"></textarea>
+                <textarea id="message" placeholder="Message" required></textarea>
+                <button type="submit">Get in touch</button>
+           </form>
+            <script>
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = {
+      firstName: document.getElementById('firstName').value,
+      lastName: document.getElementById('lastName').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('message').value
+    };
 
-                <input type="email" id="emailForm" placeholder="Enter email address">
-                <button type="button">Get in touch</button>
-            </form>
+    try {
+      const response = await fetch('https://cherrry-rin.github.io/sportgym.github.io/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        alert('Сообщение отправлено!');
+        document.getElementById('contactForm').reset();
+      } else {
+        alert('Ошибка отправки');
+      }
+    } catch (error) {
+      alert('Ошибка сети: ' + error.message);
+    }
+  });
+</script>
         </div>
        </div> 
 
@@ -77,14 +108,6 @@
         <hr>
         <p> ® 2025 GYM.COM.Все права защищены</p>
     </footer>
-        <script>
-        function checkEmail() {
-            let form = document.querySelector('#emailForm').value;
-            if (!form.includes("@")) alert('Нет символа @');
-            else if (!form.includes(".")) alert('Нет символа .');
-            else alert('все топ!')
-        }
-    </script>
 </body>
 
 </html>
