@@ -47,6 +47,7 @@
                 <label>Message</label>
                 <textarea class="one-line"></textarea>
 
+                <input type="email" id="emailForm" placeholder="Enter email address">
                 <button type="button">Get in touch</button>
             </form>
         </div>
@@ -77,8 +78,8 @@
         <p> ® 2025 GYM.COM.Все права защищены</p>
     </footer>
         <script>
-        function checkForm() {
-            let form = document.querySelector('#emailField').value;
+        function checkEmail() {
+            let form = document.querySelector('#emailForm').value;
             if (!form.includes("@")) alert('Нет символа @');
             else if (!form.includes(".")) alert('Нет символа .');
             else alert('все топ!')
